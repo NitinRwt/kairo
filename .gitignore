@@ -33,3 +33,4 @@ dist-ssr
 
 # Local installer builds
 /build/
+/installer/build/*.exe

@@ -18,6 +18,7 @@ import {
   onInstallProgress,
   onUninstallProgress,
 } from "./lib/api";
+import { KairoLogo } from "./components/KairoLogo";
 
 type Screen =
   | "loading"
@@ -48,7 +49,10 @@ const screenVariants = {
 function TitleBar({ title }: { title: string }) {
   return (
     <div className="title-bar" data-tauri-drag-region>
-      <span className="title-text" data-tauri-drag-region>{title}</span>
+      <div className="title-left" data-tauri-drag-region>
+        <img className="title-logo" src="/kairo.svg" alt="" />
+        <span className="title-text" data-tauri-drag-region>{title}</span>
+      </div>
       <div className="title-bar-buttons">
         <button className="chrome-btn" onClick={() => minimizeWindow()} title="Minimize">
           <Minus size={13} strokeWidth={1.75} />
@@ -66,20 +70,6 @@ function Background() {
     <div className="bg-blobs" aria-hidden>
       <div className="blob blob-a" />
     </div>
-  );
-}
-
-function Logo({ size = 64, idle = false }: { size?: number; idle?: boolean }) {
-  return (
-    <motion.div
-      className={`logo-glow ${idle ? "logo-idle" : ""}`}
-      style={{ width: size, height: size }}
-      initial={{ opacity: 0, scale: 0.7 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: "spring", stiffness: 220, damping: 18 }}
-    >
-      <img src="/kairo.svg" alt="Kairo" width={size * 0.55} height={size * 0.55} />
-    </motion.div>
   );
 }
 
@@ -300,7 +290,7 @@ export default function App() {
 
           {screen === "welcome" && (
             <motion.div key="welcome" className="screen welcome-screen" {...screenVariants}>
-              <Logo size={92} idle />
+              <KairoLogo size={108} idle />
               <h1>Welcome to Kairo (カイロ)</h1>
               <p className="muted">
                 This will install Kairo {state?.appVersion ? `v${state.appVersion}` : ""} on your
@@ -363,7 +353,7 @@ export default function App() {
 
           {screen === "installing" && (
             <motion.div key="installing" className="screen centered-screen" {...screenVariants}>
-              <Logo size={64} />
+              <KairoLogo size={88} progress={progress.percent} />
               <div className="spacer-sm" />
               <ProgressBar percent={progress.percent} />
               <p className="muted progress-message">{progress.message || "Installing..."}</p>
@@ -397,7 +387,7 @@ export default function App() {
 
           {screen === "uninstall-confirm" && (
             <motion.div key="uninstall-confirm" className="screen welcome-screen" {...screenVariants}>
-              <Logo size={92} idle />
+              <KairoLogo size={108} idle />
               <h1>Uninstall Kairo</h1>
               <p className="muted">This will remove Kairo and its shortcuts from this computer.</p>
               <div className="spacer" />
@@ -410,7 +400,7 @@ export default function App() {
 
           {screen === "uninstalling" && (
             <motion.div key="uninstalling" className="screen centered-screen" {...screenVariants}>
-              <Logo size={64} />
+              <KairoLogo size={88} progress={progress.percent} />
               <div className="spacer-sm" />
               <ProgressBar percent={progress.percent} />
               <p className="muted progress-message">{progress.message || "Uninstalling..."}</p>
