@@ -192,6 +192,7 @@
   "appearance.preset.ember": "Glut",
   "appearance.preset.latte": "Latte",
   "appearance.preset.mist": "Nebel",
+  "appearance.preset.batman": "Batman",
   "appearance.accent": "Akzentfarbe",
   "appearance.accent.desc": "Farbe für Schalter, Knöpfe und Regler",
   "appearance.accent.descMaterial": "Grundfarbe für die Material-You-Palette",

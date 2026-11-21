@@ -209,6 +209,7 @@
   "appearance.preset.ember": "Ember",
   "appearance.preset.latte": "Latte",
   "appearance.preset.mist": "Mist",
+  "appearance.preset.batman": "Batman",
   "appearance.accent": "Accent Color",
   "appearance.accent.desc": "Color for switches, buttons and sliders",
   "appearance.accent.descMaterial": "Base color for the Material You palette",

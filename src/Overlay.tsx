@@ -988,14 +988,13 @@ function OverlayApp() {
             transition={{ duration: 0.3 }}
           >
             <motion.img
-              src="/kairo.png"
+              src="/kairo.gif"
               className="splash-logo"
               draggable={false}
-              initial={{ scale: 0, opacity: 0, rotate: 0 }}
+              initial={{ scale: 0, opacity: 0 }}
               animate={{
                 scale: [0, 1.1, 1, 1.2, 1, 1, 0.2],
                 opacity: [0, 1, 1, 1, 1, 1, 0],
-                rotate: [0, 0, 0, 0, 0, 540, 1080],
               }}
               transition={{
                 duration: 3.2,

@@ -192,6 +192,7 @@
   "appearance.preset.ember": "Brasa",
   "appearance.preset.latte": "Latte",
   "appearance.preset.mist": "Niebla",
+  "appearance.preset.batman": "Batman",
   "appearance.accent": "Color de acento",
   "appearance.accent.desc": "Color de interruptores, botones y controles deslizantes",
   "appearance.accent.descMaterial": "Color base de la paleta Material You",

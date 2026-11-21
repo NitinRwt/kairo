@@ -969,6 +969,9 @@ export function useSettings() {
     saveSetting("kairo-theme-brightness", String(preset.brightness));
     saveSetting("kairo-theme-accent", "custom");
     saveSetting("kairo-theme-accent-color", preset.accent);
+    if (preset.startIcon) {
+      saveSetting("kairo-start-icon", preset.startIcon);
+    }
   };
 
   // ── City search ──

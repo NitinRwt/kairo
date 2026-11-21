@@ -120,7 +120,7 @@ export function AboutTab({
   return (
     <div className="about-tab-container">
       <div className="about-header">
-        <img src="/kairo.png" className="about-logo" alt="" />
+        <img src="/kairo.gif" className="about-logo" alt="" />
         <h1 className="about-title">Kairo (カイロ)</h1>
         <p className="about-version">{t("about.version", { version: appVersion || "—" })}</p>
       </div>

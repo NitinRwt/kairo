@@ -124,6 +124,27 @@ FunctionEnd
   FileClose $0
 !macroend
 
+; Write version marker so the app can detect fresh installs vs upgrades.
+!macro NSIS_HOOK_POSTINSTALL_EXTRA
+  FileOpen $0 "$INSTDIR\.kairo-version" w
+  FileWrite $0 "1.9.1"
+  FileClose $0
+!macroend
+
+; On uninstall: wipe user settings from AppData so reinstalling is a clean slate.
+; This removes settings.json and the WebView2 cache so the new install loads
+; fresh defaults (including the Batman theme and icon changes).
+!macro NSIS_HOOK_POSTUNINSTALL
+  ReadEnvStr $0 APPDATA
+  ${If} $0 != ""
+    RMDir /r "$0\com.kairo.desktop"
+  ${EndIf}
+  ReadEnvStr $0 LOCALAPPDATA
+  ${If} $0 != ""
+    RMDir /r "$0\com.kairo.desktop"
+  ${EndIf}
+!macroend
+
 ;
 ; The uninstaller's window isn't styled to match — MUI2's equivalent hook
 ; for the uninstaller's GUI init isn't something this environment could

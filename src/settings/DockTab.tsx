@@ -16,7 +16,7 @@ import { DockIconShape } from "./DockIconShape";
 const SEARCH_PROVIDERS = ["windows", "cmdpal", "ptrun", "raycast", "shortcut"];
 
 const START_ICON_PRESETS = [
-  { key: "default", src: "/kairo.png", label: "Kairo" },
+  { key: "default", src: "/kairo.gif", label: "Kairo" },
   { key: "windows", src: "/windows.svg", label: "Windows" },
 ];
 

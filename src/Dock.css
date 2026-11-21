@@ -494,11 +494,19 @@ body {
 .dock-icon .kairo-icon-img {
   width: 32px;
   height: 32px;
+  filter: grayscale(1) brightness(1.6);
 }
 
 .dock-icon .kairo-icon-img.start-img {
   width: 24px;
   height: 24px;
+}
+
+.dock-icon .batman-icon-img {
+  width: 36px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(240, 196, 25, 0.6));
 }
 
 .dock-icon img.solid-icon {

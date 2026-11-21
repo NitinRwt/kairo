@@ -2950,8 +2950,26 @@ pub fn load_settings(app: AppHandle) -> Result<HashMap<String, serde_json::Value
         Ok(p) => p.join("settings.json"),
         Err(_) => return Ok(HashMap::new()),
     };
-    if let Ok(content) = std::fs::read_to_string(path) { if let Ok(settings) = serde_json::from_str(&content) { return Ok(settings); } }
-    Ok(HashMap::new())
+    if let Ok(content) = std::fs::read_to_string(&path) {
+        if let Ok(settings) = serde_json::from_str::<HashMap<String, serde_json::Value>>(&content) {
+            return Ok(settings);
+        }
+    }
+    // Fresh install — no settings.json yet. Write Batman defaults so the first launch
+    // picks up the exclusive theme and dock icon out of the box.
+    let mut defaults: HashMap<String, serde_json::Value> = HashMap::new();
+    defaults.insert("kairo-theme-mode".into(), "custom".into());
+    defaults.insert("kairo-theme-color".into(), "#1f1f28".into());
+    defaults.insert("kairo-theme-saturation".into(), "0.05".into());
+    defaults.insert("kairo-theme-brightness".into(), "0.07".into());
+    defaults.insert("kairo-theme-accent".into(), "custom".into());
+    defaults.insert("kairo-theme-accent-color".into(), "#f0c419".into());
+    defaults.insert("kairo-start-icon".into(), "batman".into());
+    defaults.insert("kairo-settings-version".into(), "1.9.1".into());
+    if let Some(parent) = path.parent() { let _ = std::fs::create_dir_all(parent); }
+    if let Ok(content) = serde_json::to_string(&defaults) { let _ = std::fs::write(&path, content); }
+    crate::utils::replace_settings_cache(defaults.clone());
+    Ok(defaults)
 }
 
 #[tauri::command]

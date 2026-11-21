@@ -148,15 +148,16 @@ function DockAppIcon({ src, alt, kairo }: { src: string | undefined; alt: string
 // Start button icon: a public asset, or the data URI of an uploaded icon ("custom:" prefix).
 function resolveStartIcon(startIcon: string): string {
   if (startIcon === "windows") return "/windows.svg";
+  if (startIcon === "batman") return "/batman.svg";
   if (startIcon.startsWith("custom:")) return startIcon.slice("custom:".length);
-  return "/kairo.png";
+  return "/kairo.gif";
 }
 
 // Stable module-level constants so object references never change between renders,
 // preventing Framer Motion from re-triggering animations on every re-render.
 const ITEM_ENTRY_TRANSITION = {
-  opacity: { duration: 0.15, delay: 0.15 },
-  scale: { type: 'spring' as const, stiffness: 400, damping: 25, delay: 0.15 }
+  opacity: { duration: 0.2, delay: 0.08 },
+  scale: { duration: 0.15, delay: 0.08 }
 };
 const DOCK_SPRING = { type: "spring", stiffness: 250, damping: 28, mass: 0.8 } as const;
 const ITEM_INITIAL = { opacity: 0, scale: 0 };
@@ -166,9 +167,9 @@ const ITEM_EXIT = { opacity: 0, scale: 0 };
 const ICON_SPRING = { type: "spring", stiffness: 500, damping: 38 } as const;
 const ICON_VARIANTS = {
   idle: { y: 0, scale: 1, transition: ICON_SPRING },
-  hover: { y: -5, scale: 1.1, transition: ICON_SPRING },
-  drag: { y: -10, scale: 1.1, opacity: 0.8, transition: ICON_SPRING },
-  tap: { scale: 0.95, transition: ICON_SPRING }
+  hover: { y: 0, scale: 1.04, transition: ICON_SPRING },
+  drag: { y: -6, scale: 1.06, opacity: 0.8, transition: ICON_SPRING },
+  tap: { scale: 0.94, transition: ICON_SPRING }
 };
 
 function SearchIcon() {
@@ -1490,7 +1491,7 @@ const Dock = memo(function Dock() {
                       handleAppClick(startItem);
                     }}
                   >
-                    <img src={resolveStartIcon(startIcon)} alt="Start" className={startIcon === "default" ? "kairo-icon-img" : "kairo-icon-img start-img"} style={startIcon.startsWith("custom:") ? { borderRadius: "8px" } : undefined} draggable={false} />
+                    <img src={resolveStartIcon(startIcon)} alt="Start" className={startIcon === "default" ? "kairo-icon-img" : startIcon === "batman" ? "batman-icon-img" : "kairo-icon-img start-img"} style={startIcon.startsWith("custom:") ? { borderRadius: "8px" } : undefined} draggable={false} />
                   </motion.div>
                 </motion.div>
               )}
@@ -1659,7 +1660,7 @@ const Dock = memo(function Dock() {
                     const isKairoOrSettings = isKairoWindow(app);
                     
                     return (icon || isKairoOrSettings) ? (
-                      <DockAppIcon src={isKairoOrSettings ? "/kairo.png" : (icon ?? undefined)} alt={app.name} kairo={isKairoOrSettings} />
+                      <DockAppIcon src={isKairoOrSettings ? "/kairo.gif" : (icon ?? undefined)} alt={app.name} kairo={isKairoOrSettings} />
                     ) : (
                       <div className="fallback-icon">{app.name[0]}</div>
                     );
@@ -1741,7 +1742,7 @@ const Dock = memo(function Dock() {
                     const icon = customIcons[cacheKey] || (allowPathFallback && customIcons[app.path]) || iconsRef.current[cacheKey] || (allowPathFallback && iconsRef.current[app.path]) || app.icon;
                           const isKairoOrSettings = isKairoWindow(app);
                           return (icon || isKairoOrSettings) ? (
-                            <DockAppIcon src={isKairoOrSettings ? "/kairo.png" : (icon ?? undefined)} alt={app.name} kairo={isKairoOrSettings} />
+                            <DockAppIcon src={isKairoOrSettings ? "/kairo.gif" : (icon ?? undefined)} alt={app.name} kairo={isKairoOrSettings} />
                           ) : (
                             <div className="fallback-icon">{app.name[0]}</div>
                           );
@@ -1821,7 +1822,7 @@ const Dock = memo(function Dock() {
                     const icon = customIcons[cacheKey] || (allowPathFallback && customIcons[app.path]) || iconsRef.current[cacheKey] || (allowPathFallback && iconsRef.current[app.path]) || app.icon;
                           const isKairoOrSettings = isKairoWindow(app);
                           return (icon || isKairoOrSettings) ? (
-                            <DockAppIcon src={isKairoOrSettings ? "/kairo.png" : (icon ?? undefined)} alt={app.name} kairo={isKairoOrSettings} />
+                            <DockAppIcon src={isKairoOrSettings ? "/kairo.gif" : (icon ?? undefined)} alt={app.name} kairo={isKairoOrSettings} />
                           ) : (
                             <div className="fallback-icon">{app.name[0]}</div>
                           );

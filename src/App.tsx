@@ -2158,9 +2158,9 @@ function App() {
           onMouseEnter={() => setIsNotchHovered(true)}
         onMouseLeave={() => setIsNotchHovered(false)}
         onWheel={handleWheel}
-        initial={{ y: 250, width: 30.6, height: 44.2, borderTopLeftRadius: 18, borderTopRightRadius: 18, borderBottomLeftRadius: 18, borderBottomRightRadius: 18, scaleX: 1, scaleY: 1, opacity: 0 }}
+        initial={{ y: -60, width: 30.6, height: 44.2, borderTopLeftRadius: 18, borderTopRightRadius: 18, borderBottomLeftRadius: 18, borderBottomRightRadius: 18, scaleX: 0.88, scaleY: 0.88, opacity: 0 }}
         animate={{
-          y: !isReady ? 250 : (isHidden ? -100 : 0),
+          y: !isReady ? -60 : (isHidden ? -100 : 0),
           width: !isReady ? 34 : (isExpanded && !isHidden ? getDynamicWidth() : (isImpacted ? 39.1 : 30.6)),
           height: !isReady ? 34 : getDynamicHeight(),
           opacity: isReady ? 1 : 0,

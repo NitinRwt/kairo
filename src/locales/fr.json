@@ -192,6 +192,7 @@
   "appearance.preset.ember": "Braise",
   "appearance.preset.latte": "Latte",
   "appearance.preset.mist": "Brume",
+  "appearance.preset.batman": "Batman",
   "appearance.accent": "Couleur d’accentuation",
   "appearance.accent.desc": "Couleur des interrupteurs, boutons et curseurs",
   "appearance.accent.descMaterial": "Couleur de base de la palette Material You",

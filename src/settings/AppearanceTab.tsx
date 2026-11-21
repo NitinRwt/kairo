@@ -133,13 +133,14 @@ export function AppearanceTab({
                 <button
                   key={preset.name}
                   type="button"
-                  className={`preset-swatch${isActivePreset(preset) ? " active" : ""}`}
+                  className={`preset-swatch${isActivePreset(preset) ? " active" : ""}${preset.seasonal ? " seasonal" : ""}`}
                   style={{ background: presetBackground(preset) }}
                   onClick={() => applyThemePreset(preset)}
-                  title={name}
+                  title={preset.seasonal ? `${name} · Seasonal` : name}
                   aria-label={name}
                 >
                   <span style={{ background: preset.accent }} />
+                  {preset.seasonal && <span className="seasonal-pip" />}
                 </button>
               );
             })}

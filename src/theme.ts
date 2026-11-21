@@ -93,6 +93,8 @@ export interface ThemePreset {
   saturation: number;
   brightness: number;
   accent: string;
+  seasonal?: boolean;
+  startIcon?: string;
 }
 
 // Background hue comes from `color`, kept low in saturation so surfaces stay calm; the accent is picked by eye.
@@ -106,6 +108,7 @@ export const THEME_PRESETS: ThemePreset[] = [
   { name: "Ember", color: "#ff7a45", saturation: 0.32, brightness: 0.1, accent: "#ff8a5c" },
   { name: "Latte", color: "#c0742d", saturation: 0.18, brightness: 0.95, accent: "#b8641c" },
   { name: "Mist", color: "#0a84ff", saturation: 0.2, brightness: 0.95, accent: "#0a6ee0" },
+  { name: "Batman", color: "#1f1f28", saturation: 0.05, brightness: 0.07, accent: "#f0c419", seasonal: true, startIcon: "batman" },
 ];
 
 export const DEFAULT_ACCENT_COLOR = "#0a84ff";
